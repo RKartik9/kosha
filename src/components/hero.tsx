@@ -2,19 +2,16 @@ import React from "react";
 
 export default function Hero() {
   return (
-    <section className="relative w-full bg-background text-foreground pt-16 pb-24 flex flex-col items-center justify-center overflow-hidden min-h-[90vh]">
-      {/* Enhanced gradient background with animation */}
-      <div
-        className="absolute inset-0 pointer-events-none z-0"
-        aria-hidden="true"
-      >
+    <section className="relative w-full pt-16 pb-24 flex flex-col items-center justify-center overflow-hidden min-h-[90vh]">
+      {/* Enhanced gradient background with animation - matching other pages */}
+      <div className="fixed inset-0 pointer-events-none z-0" aria-hidden="true">
         <div className="absolute inset-0 bg-gradient-to-br from-[#14B8A6]/20 via-[#4F46E5]/15 to-[#EC4899]/10 animate-gradient-shift" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(20,184,166,0.1),transparent_50%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(79,70,229,0.15),transparent_50%)]" />
       </div>
 
-      {/* Animated floating shapes */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+      {/* Animated floating shapes - matching other pages */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         <div className="absolute top-20 left-10 w-72 h-72 bg-[#14B8A6]/20 rounded-full blur-3xl animate-float" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#4F46E5]/20 rounded-full blur-3xl animate-float-delayed" />
         <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-[#EC4899]/10 rounded-full blur-3xl animate-pulse-slow" />
@@ -28,7 +25,7 @@ export default function Hero() {
             <span className="relative inline-flex rounded-full h-2 w-2 bg-[#14B8A6]"></span>
           </span>
           <span className="text-sm font-medium text-slate-700 dark:text-slate-200">
-            ✨ Discover your next favorite tool
+            Discover your next favorite tool
           </span>
         </div>
 
@@ -137,7 +134,19 @@ export default function Hero() {
         <div className="flex flex-wrap items-center justify-center gap-8 text-center text-slate-600 dark:text-slate-400 text-sm font-medium">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#14B8A6]/20 to-[#14B8A6]/5 flex items-center justify-center">
-              <span className="text-lg">📚</span>
+              <svg
+                className="w-4 h-4 text-[#14B8A6]"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                />
+              </svg>
             </div>
             <span>
               <span className="font-bold text-slate-900 dark:text-white">
@@ -149,7 +158,19 @@ export default function Hero() {
           <div className="hidden sm:block w-px h-6 bg-slate-300 dark:bg-slate-700" />
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#4F46E5]/20 to-[#4F46E5]/5 flex items-center justify-center">
-              <span className="text-lg">✨</span>
+              <svg
+                className="w-4 h-4 text-[#4F46E5]"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                />
+              </svg>
             </div>
             <span>
               <span className="font-bold text-slate-900 dark:text-white">
@@ -161,7 +182,19 @@ export default function Hero() {
           <div className="hidden sm:block w-px h-6 bg-slate-300 dark:bg-slate-700" />
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#EC4899]/20 to-[#EC4899]/5 flex items-center justify-center">
-              <span className="text-lg">🎯</span>
+              <svg
+                className="w-4 h-4 text-[#EC4899]"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+                />
+              </svg>
             </div>
             <span>
               <span className="font-bold text-slate-900 dark:text-white">

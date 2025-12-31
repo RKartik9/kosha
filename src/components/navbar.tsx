@@ -28,22 +28,10 @@ export default function Navbar() {
               Gallery
             </Link>
             <Link
-              href="/playground"
+              href="/about"
               className="hover:text-[#14B8A6] transition-colors"
             >
-              Playground
-            </Link>
-            <Link
-              href="/spotlights"
-              className="hover:text-[#14B8A6] transition-colors"
-            >
-              Spotlights
-            </Link>
-            <Link
-              href="/community"
-              className="hover:text-[#14B8A6] transition-colors"
-            >
-              Community
+              About
             </Link>
           </div>
         </div>

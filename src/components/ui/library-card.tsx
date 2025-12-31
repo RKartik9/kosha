@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 export interface LibraryData {
@@ -11,7 +13,24 @@ export interface LibraryData {
 }
 
 export const LibraryCard: React.FC<{ data: LibraryData }> = ({ data }) => {
-  const { name, tagline, logoUrl, tags, links, meta, featured } = data;
+  const { name, tagline, tags, links, meta, featured } = data;
+
+  // Generate a consistent color based on the name
+  const getColorFromName = (str: string) => {
+    const colors = [
+      "from-[#14B8A6] to-[#0D9488]", // Teal
+      "from-[#4F46E5] to-[#4338CA]", // Indigo
+      "from-[#EC4899] to-[#DB2777]", // Pink
+      "from-[#F59E0B] to-[#D97706]", // Amber
+      "from-[#8B5CF6] to-[#7C3AED]", // Purple
+      "from-[#06B6D4] to-[#0891B2]", // Cyan
+    ];
+    const hash = str
+      .split("")
+      .reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    return colors[hash % colors.length];
+  };
+
   return (
     <article
       className="relative rounded-[14px] border border-cyan-200/30 bg-gradient-to-br from-cyan-100/10 via-indigo-100/10 to-white/5 shadow-lg backdrop-blur-sm p-6 flex flex-col gap-4 min-h-[220px] focus-within:ring-2 focus-within:ring-indigo-400 transition-transform duration-200 hover:-translate-y-1 motion-reduce:transition-none"
@@ -24,11 +43,13 @@ export const LibraryCard: React.FC<{ data: LibraryData }> = ({ data }) => {
         </span>
       )}
       <div className="flex items-center gap-4">
-        <img
-          src={logoUrl}
-          alt={name + " logo"}
-          className="w-12 h-12 rounded-lg bg-white/60 border border-cyan-200 object-contain"
-        />
+        <div
+          className={`w-12 h-12 rounded-lg bg-gradient-to-br ${getColorFromName(
+            name
+          )} flex items-center justify-center text-white font-bold text-xl shadow-md`}
+        >
+          {name.charAt(0).toUpperCase()}
+        </div>
         <div>
           <h3 className="text-lg font-bold leading-tight">{name}</h3>
           <p className="text-sm opacity-80 mt-1 line-clamp-1">{tagline}</p>
