@@ -11,12 +11,15 @@ async function ensureAdmin() {
   if (!userId) {
     throw new Error("Not authenticated");
   }
-  
+
   await dbConnect();
-  
+
   // First try to find by Clerk user ID
-  let admin = await AdminUser.findOne({ clerkUserId: userId, role: "admin" }).lean();
-  
+  let admin = await AdminUser.findOne({
+    clerkUserId: userId,
+    role: "admin",
+  }).lean();
+
   // If not found, try to match by email (for users who sign in with Google/social)
   if (!admin) {
     const user = await currentUser();
@@ -25,7 +28,7 @@ async function ensureAdmin() {
       admin = await AdminUser.findOne({ email, role: "admin" }).lean();
     }
   }
-  
+
   if (!admin) {
     throw new Error("Not authorized");
   }
@@ -37,7 +40,11 @@ export async function approveSubmission(formData: FormData) {
   const id = formData.get("id") as string | null;
   if (!id) throw new Error("Missing id");
   await dbConnect();
-  await LibrarySubmission.findByIdAndUpdate(id, { status: "approved" }, { new: true }).lean();
+  await LibrarySubmission.findByIdAndUpdate(
+    id,
+    { status: "approved" },
+    { new: true }
+  ).lean();
 }
 
 export async function rejectSubmission(formData: FormData) {
@@ -45,7 +52,11 @@ export async function rejectSubmission(formData: FormData) {
   const id = formData.get("id") as string | null;
   if (!id) throw new Error("Missing id");
   await dbConnect();
-  await LibrarySubmission.findByIdAndUpdate(id, { status: "rejected" }, { new: true }).lean();
+  await LibrarySubmission.findByIdAndUpdate(
+    id,
+    { status: "rejected" },
+    { new: true }
+  ).lean();
 }
 
 export async function approveRequest(formData: FormData) {
@@ -53,7 +64,11 @@ export async function approveRequest(formData: FormData) {
   const id = formData.get("id") as string | null;
   if (!id) throw new Error("Missing id");
   await dbConnect();
-  await CategoryRequest.findByIdAndUpdate(id, { status: "approved" }, { new: true }).lean();
+  await CategoryRequest.findByIdAndUpdate(
+    id,
+    { status: "approved" },
+    { new: true }
+  ).lean();
 }
 
 export async function rejectRequest(formData: FormData) {
@@ -61,5 +76,9 @@ export async function rejectRequest(formData: FormData) {
   const id = formData.get("id") as string | null;
   if (!id) throw new Error("Missing id");
   await dbConnect();
-  await CategoryRequest.findByIdAndUpdate(id, { status: "rejected" }, { new: true }).lean();
+  await CategoryRequest.findByIdAndUpdate(
+    id,
+    { status: "rejected" },
+    { new: true }
+  ).lean();
 }

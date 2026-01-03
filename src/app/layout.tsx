@@ -18,6 +18,12 @@ export const metadata: Metadata = {
   title: "Kosha",
   description: "Find all the free UI libraries",
 };
+// Use favicon.png from public as the site icon
+metadata.icons = {
+  icon: "/favicon.png",
+  shortcut: "/favicon.png",
+  apple: "/favicon.png",
+};
 
 export default function RootLayout({
   children,

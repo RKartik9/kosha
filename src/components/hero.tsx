@@ -96,7 +96,7 @@ export default function Hero() {
         </div>
 
         {/* Enhanced search bar */}
-        <form className="max-w-2xl mx-auto animate-fade-in-up-delayed-3">
+        {/* <form className="max-w-2xl mx-auto animate-fade-in-up-delayed-3">
           <label htmlFor="search" className="sr-only">
             Search libraries, inspiration, tools…
           </label>
@@ -126,7 +126,7 @@ export default function Hero() {
               <span>⌘</span>K
             </kbd>
           </div>
-        </form>
+        </form> */}
       </div>
 
       {/* Enhanced trust row with stats */}

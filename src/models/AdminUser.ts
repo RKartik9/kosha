@@ -29,4 +29,5 @@ const AdminUserSchema = new mongoose.Schema(
   }
 );
 
-export default mongoose.models.AdminUser || mongoose.model("AdminUser", AdminUserSchema);
+export default mongoose.models.AdminUser ||
+  mongoose.model("AdminUser", AdminUserSchema);
