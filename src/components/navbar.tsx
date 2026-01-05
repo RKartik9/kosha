@@ -15,7 +15,7 @@ import {
 
 const navItems = [
   { href: "/libraries", label: "Libraries", icon: Library },
-  { href: "/gallery", label: "Gallery", icon: Images },
+  { href: "/gallery", label: "Showcase", icon: Images },
   { href: "/about", label: "About", icon: Info },
 ];
 

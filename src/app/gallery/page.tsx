@@ -24,6 +24,9 @@ export default function GalleryPage() {
     "Navigation",
     "Animations",
     "Dashboards",
+    "Tables",
+    "Modals",
+    "Charts",
   ];
   const [activeCategory, setActiveCategory] = useState("All");
   const [hoveredId, setHoveredId] = useState<number | null>(null);
@@ -159,6 +162,270 @@ export default function GalleryPage() {
         "Animated connection lines between elements for showcasing integrations",
       tags: ["Beam", "Connections", "Integration"],
     },
+    {
+      id: 13,
+      title: "Meteors Effect",
+      category: "Animations",
+      library: "Aceternity UI",
+      imageUrl: "/placeholder-meteors.jpg",
+      liveUrl: "https://ui.aceternity.com/components/meteors",
+      description:
+        "Stunning meteor shower animation for card backgrounds and hero sections",
+      tags: ["Meteors", "Background", "Particles"],
+    },
+    {
+      id: 14,
+      title: "Animated Gradient Text",
+      category: "Animations",
+      library: "Magic UI",
+      imageUrl: "/placeholder-gradient-text.jpg",
+      liveUrl: "https://magicui.design/docs/components/animated-gradient-text",
+      description:
+        "Eye-catching gradient text with smooth color transitions",
+      tags: ["Gradient", "Typography", "Modern"],
+    },
+    {
+      id: 15,
+      title: "Globe Visualization",
+      category: "Animations",
+      library: "Aceternity UI",
+      imageUrl: "/placeholder-globe.jpg",
+      liveUrl: "https://ui.aceternity.com/components/globe",
+      description:
+        "Interactive 3D globe with connection arcs for global presence showcase",
+      tags: ["3D", "Globe", "WebGL"],
+    },
+    {
+      id: 16,
+      title: "Dock Navigation",
+      category: "Navigation",
+      library: "Magic UI",
+      imageUrl: "/placeholder-dock.jpg",
+      liveUrl: "https://magicui.design/docs/components/dock",
+      description:
+        "macOS-style dock menu with magnification and smooth animations",
+      tags: ["Dock", "macOS", "Navigation"],
+    },
+    {
+      id: 17,
+      title: "Sparkles Effect",
+      category: "Animations",
+      library: "Aceternity UI",
+      imageUrl: "/placeholder-sparkles.jpg",
+      liveUrl: "https://ui.aceternity.com/components/sparkles",
+      description:
+        "Magical sparkle particles for highlighting important elements",
+      tags: ["Sparkles", "Particles", "Magic"],
+    },
+    {
+      id: 18,
+      title: "Card Stack",
+      category: "Cards",
+      library: "Aceternity UI",
+      imageUrl: "/placeholder-stack.jpg",
+      liveUrl: "https://ui.aceternity.com/components/card-stack",
+      description:
+        "Tinder-style swipeable card stack with drag interactions",
+      tags: ["Stack", "Swipe", "Interactive"],
+    },
+    {
+      id: 19,
+      title: "Animated List",
+      category: "Animations",
+      library: "Magic UI",
+      imageUrl: "/placeholder-list.jpg",
+      liveUrl: "https://magicui.design/docs/components/animated-list",
+      description:
+        "Smooth staggered animations for list items with auto-scroll",
+      tags: ["List", "Stagger", "Scroll"],
+    },
+    {
+      id: 20,
+      title: "Data Table Advanced",
+      category: "Tables",
+      library: "shadcn/ui",
+      imageUrl: "/placeholder-table.jpg",
+      liveUrl: "https://ui.shadcn.com/docs/components/data-table",
+      description:
+        "Feature-rich data table with sorting, filtering, and pagination",
+      tags: ["Table", "Data", "Tanstack"],
+    },
+    {
+      id: 21,
+      title: "Ripple Button",
+      category: "Buttons",
+      library: "Magic UI",
+      imageUrl: "/placeholder-ripple.jpg",
+      liveUrl: "https://magicui.design/docs/components/ripple-button",
+      description:
+        "Button with Material Design ripple effect and smooth feedback",
+      tags: ["Ripple", "Material", "Feedback"],
+    },
+    {
+      id: 22,
+      title: "Infinite Scroll Marquee",
+      category: "Animations",
+      library: "Magic UI",
+      imageUrl: "/placeholder-marquee.jpg",
+      liveUrl: "https://magicui.design/docs/components/marquee",
+      description:
+        "Seamless infinite scrolling marquee for logos and testimonials",
+      tags: ["Marquee", "Infinite", "Logos"],
+    },
+    {
+      id: 23,
+      title: "Background Beams",
+      category: "Animations",
+      library: "Aceternity UI",
+      imageUrl: "/placeholder-beams.jpg",
+      liveUrl: "https://ui.aceternity.com/components/background-beams",
+      description:
+        "Animated light beams background for modern hero sections",
+      tags: ["Beams", "Background", "Hero"],
+    },
+    {
+      id: 24,
+      title: "Compare Images Slider",
+      category: "Cards",
+      library: "Aceternity UI",
+      imageUrl: "/placeholder-compare.jpg",
+      liveUrl: "https://ui.aceternity.com/components/compare",
+      description:
+        "Interactive before/after image comparison with draggable slider",
+      tags: ["Compare", "Slider", "Images"],
+    },
+    {
+      id: 25,
+      title: "Text Generate Effect",
+      category: "Animations",
+      library: "Aceternity UI",
+      imageUrl: "/placeholder-text-generate.jpg",
+      liveUrl: "https://ui.aceternity.com/components/text-generate-effect",
+      description:
+        "AI-style text generation animation with word-by-word reveal",
+      tags: ["Text", "Generate", "AI"],
+    },
+    {
+      id: 26,
+      title: "Modal Dialog",
+      category: "Modals",
+      library: "shadcn/ui",
+      imageUrl: "/placeholder-modal.jpg",
+      liveUrl: "https://ui.shadcn.com/docs/components/dialog",
+      description:
+        "Accessible modal dialog with animations and keyboard navigation",
+      tags: ["Modal", "Dialog", "Accessible"],
+    },
+    {
+      id: 27,
+      title: "Drawer Component",
+      category: "Modals",
+      library: "shadcn/ui",
+      imageUrl: "/placeholder-drawer.jpg",
+      liveUrl: "https://ui.shadcn.com/docs/components/drawer",
+      description:
+        "Smooth slide-out drawer for mobile menus and side panels",
+      tags: ["Drawer", "Mobile", "Slide"],
+    },
+    {
+      id: 28,
+      title: "Number Ticker",
+      category: "Animations",
+      library: "Magic UI",
+      imageUrl: "/placeholder-ticker.jpg",
+      liveUrl: "https://magicui.design/docs/components/number-ticker",
+      description:
+        "Animated counting numbers for statistics and metrics display",
+      tags: ["Numbers", "Counter", "Stats"],
+    },
+    {
+      id: 29,
+      title: "Spotlight Effect",
+      category: "Animations",
+      library: "Aceternity UI",
+      imageUrl: "/placeholder-spotlight.jpg",
+      liveUrl: "https://ui.aceternity.com/components/spotlight",
+      description:
+        "Cursor-following spotlight effect for interactive cards",
+      tags: ["Spotlight", "Cursor", "Interactive"],
+    },
+    {
+      id: 30,
+      title: "Chart Components",
+      category: "Charts",
+      library: "shadcn/ui",
+      imageUrl: "/placeholder-charts.jpg",
+      liveUrl: "https://ui.shadcn.com/docs/components/chart",
+      description:
+        "Beautiful recharts-based charts with tooltips and legends",
+      tags: ["Charts", "Data", "Recharts"],
+    },
+    {
+      id: 31,
+      title: "Sidebar Navigation",
+      category: "Navigation",
+      library: "shadcn/ui",
+      imageUrl: "/placeholder-sidebar.jpg",
+      liveUrl: "https://ui.shadcn.com/docs/components/sidebar",
+      description:
+        "Collapsible sidebar with nested navigation and mobile support",
+      tags: ["Sidebar", "Navigation", "Collapsible"],
+    },
+    {
+      id: 32,
+      title: "Timeline Component",
+      category: "Cards",
+      library: "Aceternity UI",
+      imageUrl: "/placeholder-timeline.jpg",
+      liveUrl: "https://ui.aceternity.com/components/timeline",
+      description:
+        "Vertical timeline with scroll-triggered animations",
+      tags: ["Timeline", "History", "Scroll"],
+    },
+    {
+      id: 33,
+      title: "Particles Background",
+      category: "Animations",
+      library: "Magic UI",
+      imageUrl: "/placeholder-particles.jpg",
+      liveUrl: "https://magicui.design/docs/components/particles",
+      description:
+        "Interactive particle network background with mouse tracking",
+      tags: ["Particles", "Network", "Canvas"],
+    },
+    {
+      id: 34,
+      title: "Toast Notifications",
+      category: "Modals",
+      library: "shadcn/ui",
+      imageUrl: "/placeholder-toast.jpg",
+      liveUrl: "https://ui.shadcn.com/docs/components/toast",
+      description:
+        "Elegant toast notifications with multiple variants and positions",
+      tags: ["Toast", "Notifications", "Feedback"],
+    },
+    {
+      id: 35,
+      title: "Pricing Cards",
+      category: "Cards",
+      library: "Aceternity UI",
+      imageUrl: "/placeholder-pricing-cards.jpg",
+      liveUrl: "https://ui.aceternity.com/components/card-hover-effect",
+      description:
+        "Modern pricing cards with hover effects and feature comparisons",
+      tags: ["Pricing", "Cards", "Hover"],
+    },
+    {
+      id: 36,
+      title: "Morphing Dialog",
+      category: "Modals",
+      library: "Magic UI",
+      imageUrl: "/placeholder-morph.jpg",
+      liveUrl: "https://magicui.design/docs/components/morphing-dialog",
+      description:
+        "Smooth morphing animation from trigger element to full dialog",
+      tags: ["Morph", "Dialog", "Transition"],
+    },
   ];
 
   const filteredItems =
@@ -217,7 +484,7 @@ export default function GalleryPage() {
           </h1>
 
           <p className="text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            Explore stunning component designs and real-world examples built
+            Explore 36+ stunning component designs and real-world examples built
             with popular React libraries
           </p>
         </header>
