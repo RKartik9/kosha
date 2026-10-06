@@ -1,19 +1,26 @@
-import Navbar from "@/components/navbar";
-import Hero from "@/components/hero";
-import Features from "@/components/features";
-import PopularLibraries from "@/components/popular-libraries";
-import Stats from "@/components/stats";
-import CTA from "@/components/cta";
+import Hero from "@/components/home/hero";
+import HowItWorks from "@/components/home/how-it-works";
+import NewArrivals from "@/components/home/new-arrivals";
+import CatalogDrawers from "@/components/home/catalog-drawers";
+import Spotlight from "@/components/home/spotlight";
+import StackBuilder from "@/components/home/stack-builder";
+import ReadingRoom from "@/components/home/reading-room";
+import Donate from "@/components/home/donate";
+import { ShelfTicker } from "@/components/kosha/ShelfTicker";
+import { getLibraries } from "@/lib/catalog";
 
 export default function Home() {
   return (
     <>
-      <Navbar />
       <Hero />
-      <Features />
-      <PopularLibraries />
-      <Stats />
-      <CTA />
+      <ShelfTicker items={getLibraries()} />
+      <HowItWorks />
+      <NewArrivals />
+      <CatalogDrawers />
+      <Spotlight />
+      <StackBuilder />
+      <ReadingRoom />
+      <Donate />
     </>
   );
 }

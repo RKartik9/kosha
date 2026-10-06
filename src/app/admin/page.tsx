@@ -40,12 +40,12 @@ export default async function AdminPage() {
 
   if (!admin) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-900">
-        <div className="max-w-2xl p-8 bg-white dark:bg-slate-800 rounded-2xl shadow">
-          <h1 className="text-2xl font-bold mb-2 text-slate-900 dark:text-white">
+      <div className="min-h-[60vh] flex items-center justify-center">
+        <div className="index-card max-w-2xl rounded-[4px] p-8 pb-12">
+          <h1 className="font-display text-4xl mb-2 text-ink">
             Access denied
           </h1>
-          <p className="text-sm text-slate-600 dark:text-slate-300">
+          <p className="text-sm text-muted-foreground">
             You must be an admin to view this page.
           </p>
         </div>
@@ -61,12 +61,12 @@ export default async function AdminPage() {
 
   // Render a simple dashboard showing counts and tables
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0f172a] via-[#0b1220] to-[#071028] text-white p-8">
+    <div className="px-4 py-14 text-ink md:px-8">
       <div className="max-w-6xl mx-auto">
         <header className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold">Admin Dashboard</h1>
-            <p className="text-sm text-slate-300/80 mt-1">
+            <h1 className="font-display text-5xl">Admin Dashboard</h1>
+            <p className="font-semibold text-xs uppercase tracking-wider text-muted-foreground mt-2">
               Welcome back, {admin.name || admin.email || "Admin"} — overview of
               submissions
             </p>
@@ -74,17 +74,17 @@ export default async function AdminPage() {
         </header>
 
         <section className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-          <div className="p-6 bg-white/6 rounded-xl">
-            <h3 className="text-sm text-slate-300">Library Submissions</h3>
-            <p className="text-2xl font-bold mt-2">{submissions.length}</p>
+          <div className="index-card rounded-[3px] p-6 pb-10">
+            <h3 className="font-semibold text-[11px] uppercase tracking-wider text-muted-foreground">Library Submissions</h3>
+            <p className="font-display text-5xl mt-2">{submissions.length}</p>
           </div>
-          <div className="p-6 bg-white/6 rounded-xl">
-            <h3 className="text-sm text-slate-300">Category Requests</h3>
-            <p className="text-2xl font-bold mt-2">{requests.length}</p>
+          <div className="index-card rounded-[3px] p-6 pb-10">
+            <h3 className="font-semibold text-[11px] uppercase tracking-wider text-muted-foreground">Category Requests</h3>
+            <p className="font-display text-5xl mt-2">{requests.length}</p>
           </div>
-          <div className="p-6 bg-white/6 rounded-xl">
-            <h3 className="text-sm text-slate-300">Pending Reviews</h3>
-            <p className="text-2xl font-bold mt-2">
+          <div className="index-card rounded-[3px] p-6 pb-10">
+            <h3 className="font-semibold text-[11px] uppercase tracking-wider text-muted-foreground">Pending Reviews</h3>
+            <p className="font-display text-5xl mt-2">
               {submissions.filter((s) => s.status === "pending").length +
                 requests.filter((r) => r.status === "pending").length}
             </p>
@@ -92,13 +92,13 @@ export default async function AdminPage() {
         </section>
 
         <section className="mb-12">
-          <h2 className="text-xl font-semibold mb-4">
+          <h2 className="font-display text-3xl mb-4">
             Latest Library Submissions
           </h2>
-          <div className="overflow-x-auto rounded-xl bg-white/5 p-2">
+          <div className="overflow-x-auto rounded-[3px] border-2 border-ink bg-card">
             <table className="min-w-full">
               <thead>
-                <tr className="text-left text-sm text-slate-300/80 border-b border-slate-700/40">
+                <tr className="text-left font-semibold text-[11px] uppercase tracking-wider text-muted-foreground border-b-2 border-ink">
                   <th className="py-3 px-4">Name</th>
                   <th className="py-3 px-4">Category</th>
                   <th className="py-3 px-4">Email</th>
@@ -108,10 +108,10 @@ export default async function AdminPage() {
               </thead>
               <tbody>
                 {submissions.map((s: any) => (
-                  <tr key={s._id} className="border-b border-slate-700/30">
+                  <tr key={s._id} className="border-b hairline">
                     <td className="py-3 px-4">{s.name}</td>
                     <td className="py-3 px-4">{s.category}</td>
-                    <td className="py-3 px-4 text-slate-300/80">
+                    <td className="py-3 px-4 text-muted-foreground">
                       {s.submitterEmail}
                     </td>
                     <td className="py-3 px-4">
@@ -125,7 +125,7 @@ export default async function AdminPage() {
                           />
                           <button
                             type="submit"
-                            className="ml-2 inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-600 hover:bg-emerald-500 text-white text-sm"
+                            className="ml-2 inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-free hover:opacity-90 text-white font-semibold text-xs uppercase tracking-wider"
                           >
                             Approve
                           </button>
@@ -138,14 +138,14 @@ export default async function AdminPage() {
                           />
                           <button
                             type="submit"
-                            className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-rose-600 hover:bg-rose-500 text-white text-sm"
+                            className="inline-flex items-center gap-2 px-3 py-1 rounded-sm border border-destructive text-destructive hover:bg-destructive hover:text-white font-semibold text-xs uppercase tracking-wider"
                           >
                             Reject
                           </button>
                         </form>
                       </div>
                     </td>
-                    <td className="py-3 px-4 text-sm text-slate-400">
+                    <td className="py-3 px-4 font-mono text-xs text-muted-foreground">
                       {new Date(s.createdAt).toLocaleString()}
                     </td>
                   </tr>
@@ -156,13 +156,13 @@ export default async function AdminPage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold mb-4">
+          <h2 className="font-display text-3xl mb-4">
             Latest Category Requests
           </h2>
-          <div className="overflow-x-auto rounded-xl bg-white/5 p-2">
+          <div className="overflow-x-auto rounded-[3px] border-2 border-ink bg-card">
             <table className="min-w-full">
               <thead>
-                <tr className="text-left text-sm text-slate-300/80 border-b border-slate-700/40">
+                <tr className="text-left font-semibold text-[11px] uppercase tracking-wider text-muted-foreground border-b-2 border-ink">
                   <th className="py-3 px-4">Category</th>
                   <th className="py-3 px-4">Requester</th>
                   <th className="py-3 px-4">Status</th>
@@ -171,9 +171,9 @@ export default async function AdminPage() {
               </thead>
               <tbody>
                 {requests.map((r: any) => (
-                  <tr key={r._id} className="border-b border-slate-700/30">
+                  <tr key={r._id} className="border-b hairline">
                     <td className="py-3 px-4">{r.categoryName}</td>
-                    <td className="py-3 px-4 text-slate-300/80">
+                    <td className="py-3 px-4 text-muted-foreground">
                       {r.requesterEmail}
                     </td>
                     <td className="py-3 px-4">
@@ -187,7 +187,7 @@ export default async function AdminPage() {
                           />
                           <button
                             type="submit"
-                            className="ml-2 inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-600 hover:bg-emerald-500 text-white text-sm"
+                            className="ml-2 inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-free hover:opacity-90 text-white font-semibold text-xs uppercase tracking-wider"
                           >
                             Approve
                           </button>
@@ -200,14 +200,14 @@ export default async function AdminPage() {
                           />
                           <button
                             type="submit"
-                            className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-rose-600 hover:bg-rose-500 text-white text-sm"
+                            className="inline-flex items-center gap-2 px-3 py-1 rounded-sm border border-destructive text-destructive hover:bg-destructive hover:text-white font-semibold text-xs uppercase tracking-wider"
                           >
                             Reject
                           </button>
                         </form>
                       </div>
                     </td>
-                    <td className="py-3 px-4 text-sm text-slate-400">
+                    <td className="py-3 px-4 font-mono text-xs text-muted-foreground">
                       {new Date(r.createdAt).toLocaleString()}
                     </td>
                   </tr>

@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { submitLibrary } from "@/actions/submissions";
+import { categories } from "@/data/categories";
 
 interface SubmitLibraryModalProps {
   isOpen: boolean;
@@ -68,14 +69,14 @@ export default function SubmitLibraryModal({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-      <div className="relative w-full max-w-2xl bg-white dark:bg-slate-900 rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1e1b4b]/50 backdrop-blur-sm">
+      <div className="relative w-full max-w-2xl bg-card rounded-[4px] border-2 border-ink shadow-2xl max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700 p-6 flex items-center justify-between">
+        <div className="sticky top-0 bg-card border-b hairline p-6 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#14B8A6] to-[#0D9488] flex items-center justify-center">
+            <div className="w-10 h-10 rounded-sm bg-ink flex items-center justify-center">
               <svg
-                className="w-6 h-6 text-white"
+                className="w-6 h-6 text-paper"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -89,17 +90,17 @@ export default function SubmitLibraryModal({
               </svg>
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
-                Submit a Library
+              <h2 className="font-display text-3xl font-normal text-ink">
+                Suggest a tool
               </h2>
-              <p className="text-sm text-slate-500 dark:text-slate-400">
-                Share your favorite React library with the community
+              <p className="text-sm text-muted-foreground">
+                We review every suggestion before adding it
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"
+            className="text-muted-foreground hover:text-ink transition-colors"
           >
             <svg
               className="w-6 h-6"
@@ -121,7 +122,7 @@ export default function SubmitLibraryModal({
         <form onSubmit={handleSubmit} className="p-6 space-y-5">
           {message && (
             <div
-              className={`p-4 rounded-lg ${
+              className={`p-4 rounded-sm ${
                 message.type === "success"
                   ? "bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 border border-green-200 dark:border-green-800"
                   : "bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 border border-red-200 dark:border-red-800"
@@ -134,9 +135,9 @@ export default function SubmitLibraryModal({
           <div>
             <label
               htmlFor="name"
-              className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2"
+              className="block text-sm font-semibold text-xs uppercase tracking-wider text-ink mb-2"
             >
-              Library Name *
+              Tool name *
             </label>
             <input
               type="text"
@@ -145,7 +146,7 @@ export default function SubmitLibraryModal({
               required
               value={formData.name}
               onChange={handleChange}
-              className="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-[#14B8A6] focus:border-transparent transition-all"
+              className="w-full px-4 py-3 rounded-sm border border-[var(--input)] bg-paper text-ink focus:outline-none focus:ring-2 focus:ring-marigold focus:border-transparent transition-all"
               placeholder="e.g., Framer Motion"
             />
           </div>
@@ -153,7 +154,7 @@ export default function SubmitLibraryModal({
           <div>
             <label
               htmlFor="description"
-              className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2"
+              className="block text-sm font-semibold text-xs uppercase tracking-wider text-ink mb-2"
             >
               Description *
             </label>
@@ -164,7 +165,7 @@ export default function SubmitLibraryModal({
               value={formData.description}
               onChange={handleChange}
               rows={3}
-              className="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-[#14B8A6] focus:border-transparent transition-all resize-none"
+              className="w-full px-4 py-3 rounded-sm border border-[var(--input)] bg-paper text-ink focus:outline-none focus:ring-2 focus:ring-marigold focus:border-transparent transition-all resize-none"
               placeholder="Brief description of the library..."
             />
           </div>
@@ -172,9 +173,9 @@ export default function SubmitLibraryModal({
           <div>
             <label
               htmlFor="url"
-              className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2"
+              className="block text-sm font-semibold text-xs uppercase tracking-wider text-ink mb-2"
             >
-              Library URL *
+              Website URL *
             </label>
             <input
               type="url"
@@ -183,7 +184,7 @@ export default function SubmitLibraryModal({
               required
               value={formData.url}
               onChange={handleChange}
-              className="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-[#14B8A6] focus:border-transparent transition-all"
+              className="w-full px-4 py-3 rounded-sm border border-[var(--input)] bg-paper text-ink focus:outline-none focus:ring-2 focus:ring-marigold focus:border-transparent transition-all"
               placeholder="https://library-website.com"
             />
           </div>
@@ -191,7 +192,7 @@ export default function SubmitLibraryModal({
           <div>
             <label
               htmlFor="githubUrl"
-              className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2"
+              className="block text-sm font-semibold text-xs uppercase tracking-wider text-ink mb-2"
             >
               GitHub URL (Optional)
             </label>
@@ -201,7 +202,7 @@ export default function SubmitLibraryModal({
               name="githubUrl"
               value={formData.githubUrl}
               onChange={handleChange}
-              className="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-[#14B8A6] focus:border-transparent transition-all"
+              className="w-full px-4 py-3 rounded-sm border border-[var(--input)] bg-paper text-ink focus:outline-none focus:ring-2 focus:ring-marigold focus:border-transparent transition-all"
               placeholder="https://github.com/username/repo"
             />
           </div>
@@ -209,7 +210,7 @@ export default function SubmitLibraryModal({
           <div>
             <label
               htmlFor="category"
-              className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2"
+              className="block text-sm font-semibold text-xs uppercase tracking-wider text-ink mb-2"
             >
               Category *
             </label>
@@ -219,20 +220,14 @@ export default function SubmitLibraryModal({
               required
               value={formData.category}
               onChange={handleChange}
-              className="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-[#14B8A6] focus:border-transparent transition-all"
+              className="w-full px-4 py-3 rounded-sm border border-[var(--input)] bg-paper text-ink focus:outline-none focus:ring-2 focus:ring-marigold focus:border-transparent transition-all"
             >
               <option value="">Select a category</option>
-              <option value="Modern & Tailwind-based">
-                Modern & Tailwind-based
-              </option>
-              <option value="Animation & Motion">Animation & Motion</option>
-              <option value="Headless & Unstyled">Headless & Unstyled</option>
-              <option value="Complete UI Libraries">
-                Complete UI Libraries
-              </option>
-              <option value="Specialized Libraries">
-                Specialized Libraries
-              </option>
+              {categories.map((c) => (
+                <option key={c.slug} value={c.name}>
+                  {c.name}
+                </option>
+              ))}
               <option value="Other">Other</option>
             </select>
           </div>
@@ -240,7 +235,7 @@ export default function SubmitLibraryModal({
           <div>
             <label
               htmlFor="submitterEmail"
-              className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2"
+              className="block text-sm font-semibold text-xs uppercase tracking-wider text-ink mb-2"
             >
               Your Email *
             </label>
@@ -251,7 +246,7 @@ export default function SubmitLibraryModal({
               required
               value={formData.submitterEmail}
               onChange={handleChange}
-              className="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-[#14B8A6] focus:border-transparent transition-all"
+              className="w-full px-4 py-3 rounded-sm border border-[var(--input)] bg-paper text-ink focus:outline-none focus:ring-2 focus:ring-marigold focus:border-transparent transition-all"
               placeholder="your@email.com"
             />
           </div>
@@ -261,16 +256,16 @@ export default function SubmitLibraryModal({
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-6 py-3 rounded-lg border-2 border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+              className="flex-1 px-6 py-3 rounded-sm border-2 border-ink text-ink font-semibold text-xs uppercase tracking-wider hover:bg-paper transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={loading}
-              className="flex-1 px-6 py-3 rounded-lg bg-gradient-to-r from-[#14B8A6] to-[#0D9488] text-white font-semibold hover:from-[#10A093] hover:to-[#0F766E] disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-xl"
+              className="flex-1 px-6 py-3 rounded-sm bg-ink text-paper font-semibold text-xs uppercase tracking-wider hover:bg-marigold hover:text-[#1e1b4b] disabled:opacity-50 disabled:cursor-not-allowed transition-all "
             >
-              {loading ? "Submitting..." : "Submit Library"}
+              {loading ? "Submitting..." : "Submit suggestion"}
             </button>
           </div>
         </form>

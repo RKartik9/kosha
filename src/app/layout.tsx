@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ClerkProvider } from "@clerk/nextjs";
+import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 
 const geistSans = Geist({
@@ -10,20 +11,39 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  weight: "400",
+  style: ["normal", "italic"],
   subsets: ["latin"],
 });
 
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+});
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://kosha.dev";
+
 export const metadata: Metadata = {
-  title: "Kosha",
-  description: "Find all the free UI libraries",
-};
-// Use favicon.png from public as the site icon
-metadata.icons = {
-  icon: "/favicon.png",
-  shortcut: "/favicon.png",
-  apple: "/favicon.png",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Kosha — A treasury of free tools for people who build",
+    template: "%s · Kosha",
+  },
+  description:
+    "Kosha is a hand-picked directory of free UI libraries, icons, fonts, illustrations, colors, templates and developer utilities.",
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
+  },
+  openGraph: {
+    title: "Kosha — A treasury of free tools for people who build",
+    description:
+      "A hand-picked directory of free UI libraries and design resources.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -33,12 +53,17 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
+          className={`${geistSans.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} antialiased flex flex-col min-h-screen`}
         >
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            {children}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem={false}
+          >
+            <Navbar />
+            <main className="flex-1">{children}</main>
             <Footer />
           </ThemeProvider>
         </body>
