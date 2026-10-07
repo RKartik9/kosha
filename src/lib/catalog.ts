@@ -5,6 +5,7 @@ import type {
   Category,
   CategoryKind,
   CategorySlug,
+  Framework,
   Resource,
 } from "@/data/types";
 
@@ -71,6 +72,21 @@ export function search(query: string, pool: Resource[] = all): Resource[] {
       .toLowerCase()
       .includes(q)
   );
+}
+
+export const frameworkPages: { slug: string; framework: Framework; name: string }[] = [
+  { slug: "react", framework: "React", name: "React" },
+  { slug: "vue", framework: "Vue", name: "Vue" },
+  { slug: "svelte", framework: "Svelte", name: "Svelte" },
+  { slug: "angular", framework: "Angular", name: "Angular" },
+];
+
+export function getFrameworkPage(slug: string) {
+  return frameworkPages.find((f) => f.slug === slug);
+}
+
+export function getByFramework(framework: Framework): Resource[] {
+  return libraries.filter((r) => r.frameworks?.includes(framework));
 }
 
 /** Library-style call number, e.g. "KSH 004.UI / 012". */

@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { Suspense } from "react";
 import { IndexTab } from "@/components/kosha/IndexTab";
 import { CompareDesk } from "@/components/kosha/CompareDesk";
 import { callNumber, getAll, getCategory } from "@/lib/catalog";
 
-export const metadata: Metadata = {
-  title: "Compare desk",
-  description: "Compare free UI libraries and design resources side by side: frameworks, licenses, stars and tags.",
-};
+export const metadata: Metadata = pageMeta({
+  title: "Compare UI Libraries Side by Side",
+  description: "Compare free UI libraries and React component libraries side by side: frameworks, licenses, GitHub stars, price and features.",
+  path: "/compare",
+});
 
 export default function ComparePage() {
   const entries = getAll().map((r) => ({

@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { IndexTab } from "@/components/kosha/IndexTab";
 import { SavedShelf } from "@/components/kosha/SavedShelf";
 import { getAll } from "@/lib/catalog";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Saved",
   description: "The libraries and resources you have saved on Kosha.",
-  robots: { index: false },
-};
+  path: "/saved",
+  noindex: true,
+});
 
 export default function SavedPage() {
   return (

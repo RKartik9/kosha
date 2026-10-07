@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { IndexTab } from "@/components/kosha/IndexTab";
 import { Kolam } from "@/components/kosha/Kolam";
 import { Stamp } from "@/components/kosha/Stamp";
@@ -6,10 +7,11 @@ import Donate from "@/components/home/donate";
 import { getAll, getCategories } from "@/lib/catalog";
 import { ISSUES_URL, NEW_ISSUE_URL, REPO_URL } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "About",
-  description: "Why Kosha exists, how we pick what gets listed, and how we respect the makers we link to.",
-};
+  description: "Kosha is an open-source, hand-picked directory of free UI libraries and design resources. Learn how we choose what gets listed.",
+  path: "/about",
+});
 
 const articles = [
   {

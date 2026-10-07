@@ -53,7 +53,7 @@ export default function Hero() {
         <div className="animate-rise">
           <p className="inline-flex items-center gap-3 font-semibold text-xs uppercase tracking-wider text-muted-foreground">
             <span className="h-px w-8 bg-ink" />
-            Free · Hand-picked · No sign-up
+            Free UI libraries · React components · Design resources
           </p>
           <h1 className="mt-6 font-display text-5xl leading-[1.02] text-ink sm:text-6xl lg:text-[5.2rem]">
             A treasury of{" "}
@@ -66,9 +66,10 @@ export default function Hero() {
             for people who build.
           </h1>
           <p className="mt-8 max-w-xl text-lg text-muted-foreground">
-            Find free UI libraries, icons, fonts, illustrations, colors,
-            templates and developer tools in one place. Everything here is free
-            to use and checked by a real person.
+            Kosha is a hand-picked directory of free UI libraries and React
+            component libraries, plus Vue, Svelte and Angular kits, icons, fonts,
+            illustrations and templates. Everything is free to use and checked by
+            a real person.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-3">

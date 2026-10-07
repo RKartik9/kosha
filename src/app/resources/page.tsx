@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import { IndexTab } from "@/components/kosha/IndexTab";
 import { Drawer } from "@/components/kosha/Drawer";
 import { getAll, getByCategory, getCategories } from "@/lib/catalog";
 
-export const metadata: Metadata = {
-  title: "Design resources",
+export const metadata: Metadata = pageMeta({
+  title: "Free Design Resources: Icons, Fonts, Illustrations & More",
   description:
-    "Free icons, fonts, illustrations, colors, backgrounds, stock media, mockups, templates, developer utilities and inspiration galleries.",
-};
+    "Hand-picked free design resources for developers: icon sets, fonts, illustrations, color tools, backgrounds, stock photos, mockups, templates and developer utilities.",
+  path: "/resources",
+  keywords: ["free design resources", "free icons", "free fonts", "free illustrations", "developer tools"],
+});
 
 export default function ResourcesPage() {
   const groups = [

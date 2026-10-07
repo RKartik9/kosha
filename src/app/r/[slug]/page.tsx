@@ -15,6 +15,9 @@ import {
   hostOf,
   pricingLabel,
 } from "@/lib/catalog";
+import { breadcrumbJsonLd, pageMeta } from "@/lib/seo";
+import { JsonLd } from "@/components/JsonLd";
+import { SITE_URL } from "@/lib/site";
 
 type Params = { slug: string };
 
@@ -30,7 +33,15 @@ export async function generateMetadata({
   const { slug } = await params;
   const r = getBySlug(slug);
   if (!r) return {};
-  return { title: r.name, description: r.tagline };
+  const cat = getCategory(r.category)!;
+  const fw = r.frameworks?.filter((f) => f !== "Any");
+  const kind = cat.kind === "library" ? `${fw?.length ? `${fw.join(", ")} ` : ""}UI library` : cat.name.toLowerCase();
+  return pageMeta({
+    title: `${r.name}: free ${kind}`,
+    description: `${r.name}: ${r.tagline.replace(/\.?$/, ".")} ${pricingLabel[r.pricing]} (${r.license}). Features, license, links and similar ${cat.name.toLowerCase()} on Kosha.`,
+    path: `/r/${r.slug}`,
+    keywords: [r.name, `${r.name} alternatives`, ...r.tags],
+  });
 }
 
 export default async function ResourcePage({
@@ -59,8 +70,34 @@ export default async function ResourcePage({
     ["Added on", shelved],
   ];
 
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      name: r.name,
+      description: r.tagline,
+      url: r.url,
+      mainEntityOfPage: `${SITE_URL}/r/${r.slug}`,
+      applicationCategory: cat.kind === "library" ? "DeveloperApplication" : "DesignApplication",
+      operatingSystem: "Web",
+      license: r.license,
+      keywords: r.tags.join(", "),
+      offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      ...(r.github && { sameAs: [r.github] }),
+    },
+    breadcrumbJsonLd([
+      { name: "Home", path: "/" },
+      cat.kind === "library"
+        ? { name: "UI libraries", path: "/libraries" }
+        : { name: "Design resources", path: "/resources" },
+      { name: cat.name, path: `/resources/${cat.slug}` },
+      { name: r.name, path: `/r/${r.slug}` },
+    ]),
+  ];
+
   return (
     <div className="mx-auto max-w-6xl px-4 pt-14 md:px-6 lg:px-8">
+      <JsonLd data={jsonLd} />
       <nav aria-label="Breadcrumb" className="mb-8 font-semibold text-xs uppercase tracking-wider text-muted-foreground">
         <Link href="/resources" className="link-ink">All categories</Link>
         <span className="mx-2">/</span>

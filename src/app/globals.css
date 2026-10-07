@@ -325,6 +325,16 @@
   }
 }
 
+@keyframes shine {
+  0%,
+  40% {
+    transform: translateX(0) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(450%) skewX(-20deg);
+  }
+}
+
 @keyframes rise {
   from {
     opacity: 0;

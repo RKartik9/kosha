@@ -11,7 +11,10 @@ const isPublicRoute = createRouteMatcher([
   "/saved(.*)",
   "/sitemap.xml",
   "/robots.txt",
-  "/sign-in(.*)",
+  "/icon(.*)",
+  "/apple-icon(.*)",
+  "/opengraph-image(.*)",
+  "/manifest.webmanifest",  "/sign-in(.*)",
   "/sign-up(.*)",
 ]);
 

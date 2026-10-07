@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getAll, getByCategory, getCategories } from "@/lib/catalog";
+import { frameworkPages, getAll, getByCategory, getCategories } from "@/lib/catalog";
 import { NEW_ISSUE_URL, REPO_URL } from "@/lib/site";
 
 export default function Footer() {
@@ -77,6 +77,14 @@ export default function Footer() {
             </ul>
           </div>
         </div>
+
+        <nav aria-label="UI libraries by framework" className="mt-12 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+          {frameworkPages.map((f) => (
+            <Link key={f.slug} href={`/libraries/${f.slug}`} className="link-ink">
+              Free {f.name} UI libraries
+            </Link>
+          ))}
+        </nav>
 
         <div className="mt-16 overflow-hidden" aria-hidden="true">
           <p className="select-none font-accent text-[26vw] leading-[0.78] tracking-[-0.04em] text-ink md:text-[19rem]">
