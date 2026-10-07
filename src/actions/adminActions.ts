@@ -5,6 +5,12 @@ import LibrarySubmission from "@/models/LibrarySubmission";
 import CategoryRequest from "@/models/CategoryRequest";
 import AdminUser from "@/models/AdminUser";
 import { auth, currentUser } from "@clerk/nextjs/server";
+import { captureServerEvent } from "@/lib/posthog-server";
+
+async function trackAdminEvent(event: string, id: string) {
+  const { userId } = await auth();
+  if (userId) await captureServerEvent(userId, event, { id });
+}
 
 async function ensureAdmin() {
   const { userId } = await auth();
@@ -45,6 +51,7 @@ export async function approveSubmission(formData: FormData) {
     { status: "approved" },
     { new: true }
   ).lean();
+  await trackAdminEvent("submission_approved", id);
 }
 
 export async function rejectSubmission(formData: FormData) {
@@ -57,6 +64,7 @@ export async function rejectSubmission(formData: FormData) {
     { status: "rejected" },
     { new: true }
   ).lean();
+  await trackAdminEvent("submission_rejected", id);
 }
 
 export async function approveRequest(formData: FormData) {
@@ -69,6 +77,7 @@ export async function approveRequest(formData: FormData) {
     { status: "approved" },
     { new: true }
   ).lean();
+  await trackAdminEvent("category_request_approved", id);
 }
 
 export async function rejectRequest(formData: FormData) {
@@ -81,4 +90,5 @@ export async function rejectRequest(formData: FormData) {
     { status: "rejected" },
     { new: true }
   ).lean();
+  await trackAdminEvent("category_request_rejected", id);
 }

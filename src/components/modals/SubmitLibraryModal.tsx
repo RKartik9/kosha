@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import posthog from "posthog-js";
 import { submitLibrary } from "@/actions/submissions";
 import { categories } from "@/data/categories";
 
@@ -32,7 +33,12 @@ export default function SubmitLibraryModal({
     setLoading(true);
     setMessage(null);
 
-    const result = await submitLibrary(formData);
+    posthog.capture("library_submit_attempted", { category: formData.category });
+    const result = await submitLibrary(formData, posthog.get_distinct_id());
+
+    if (!result.success) {
+      posthog.captureException(new Error(result.message), { form: "submit_library" });
+    }
 
     if (result.success) {
       setMessage({ type: "success", text: result.message });

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { IndexTab } from "@/components/kosha/IndexTab";
 import { Stamp } from "@/components/kosha/Stamp";
+import { TrackedLink } from "@/components/kosha/TrackedLink";
 import { stacks } from "@/data/stacks";
 import { getBySlug, getCategory } from "@/lib/catalog";
 
@@ -20,9 +21,11 @@ export default function StackBuilder() {
       />
       <div className="grid gap-8 md:grid-cols-3">
         {stacks.map((stack, si) => (
-          <Link
+          <TrackedLink
             key={stack.slug}
             href={`/compare?items=${stack.items.join(",")}`}
+            event="stack_compare_clicked"
+            properties={{ stack: stack.slug, items: stack.items }}
             className="group relative block rounded-[3px] border-2 border-ink bg-card p-6 transition-transform duration-200 hover:-translate-y-1"
           >
             <div className="flex items-start justify-between border-b-2 border-ink pb-3">
@@ -64,7 +67,7 @@ export default function StackBuilder() {
             <p className="mt-5 font-semibold text-xs uppercase tracking-wider text-ink transition-colors group-hover:text-marigold-deep">
               Compare these tools →
             </p>
-          </Link>
+          </TrackedLink>
         ))}
       </div>
     </section>

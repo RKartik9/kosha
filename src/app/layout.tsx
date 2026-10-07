@@ -14,6 +14,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { ClerkProvider } from "@clerk/nextjs";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import { PostHogIdentify } from "@/components/posthog-identify";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -108,6 +109,7 @@ export default function RootLayout({
           className={`${geistSans.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} antialiased flex flex-col min-h-screen`}
         >
           <JsonLd data={siteJsonLd} />
+          <PostHogIdentify />
           <ThemeProvider
             attribute="class"
             defaultTheme="light"

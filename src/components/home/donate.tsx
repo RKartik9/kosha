@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import posthog from "posthog-js";
 import SubmitLibraryModal from "@/components/modals/SubmitLibraryModal";
 import RequestCategoryModal from "@/components/modals/RequestCategoryModal";
 import { Stamp } from "@/components/kosha/Stamp";
@@ -33,14 +34,20 @@ export default function Donate({ letter = "G" }: { letter?: string }) {
           <div className="mt-10 flex flex-wrap gap-3">
             <button
               type="button"
-              onClick={() => setSubmitOpen(true)}
+              onClick={() => {
+                setSubmitOpen(true);
+                posthog.capture("submit_library_opened");
+              }}
               className="inline-flex h-12 items-center rounded-sm bg-marigold px-6 font-semibold text-xs uppercase tracking-wider text-[#1e1b4b] transition-transform hover:-translate-y-0.5"
             >
               Suggest a tool
             </button>
             <button
               type="button"
-              onClick={() => setRequestOpen(true)}
+              onClick={() => {
+                setRequestOpen(true);
+                posthog.capture("request_category_opened");
+              }}
               className="inline-flex h-12 items-center rounded-sm border-2 border-paper/60 px-6 font-semibold text-xs uppercase tracking-wider text-paper transition-colors hover:border-paper"
             >
               Request a category

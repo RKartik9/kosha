@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { Stamp, type StampTone } from "./Stamp";
 import { Favicon } from "./Favicon";
 import { SaveButton } from "./SaveButton";
+import { OutboundLink } from "./TrackedLink";
 
 const pricingTone: Record<Resource["pricing"], StampTone> = {
   oss: "ink",
@@ -78,15 +79,16 @@ export function IndexCard({
         </Stamp>
         <div className="flex items-center gap-1.5">
           <SaveButton slug={resource.slug} name={resource.name} />
-          <a
+          <OutboundLink
             href={resource.url}
-            target="_blank"
-            rel="noopener noreferrer"
+            slug={resource.slug}
+            linkType="site"
+            source="index_card"
             aria-label={`Visit ${resource.name}`}
             className="relative z-10 inline-flex h-8 w-8 items-center justify-center rounded-sm bg-ink text-paper transition-colors hover:bg-marigold hover:text-[#1e1b4b]"
           >
             <ArrowUpRight className="h-4 w-4" />
-          </a>
+          </OutboundLink>
         </div>
       </footer>
     </article>

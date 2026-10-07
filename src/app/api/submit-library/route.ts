@@ -4,6 +4,7 @@
 
 import { NextResponse } from "next/server";
 import { submitLibrary } from "@/actions/submissions";
+import { captureServerException } from "@/lib/posthog-server";
 
 export const runtime = "nodejs";
 
@@ -27,18 +28,24 @@ export async function POST(req: Request) {
       }
     }
 
-    const result = await submitLibrary({
-      name: String(body.name),
-      description: String(body.description),
-      url: String(body.url),
-      githubUrl: body.githubUrl ? String(body.githubUrl) : undefined,
-      category: String(body.category),
-      submitterEmail: String(body.submitterEmail),
-    });
+    const result = await submitLibrary(
+      {
+        name: String(body.name),
+        description: String(body.description),
+        url: String(body.url),
+        githubUrl: body.githubUrl ? String(body.githubUrl) : undefined,
+        category: String(body.category),
+        submitterEmail: String(body.submitterEmail),
+      },
+      req.headers.get("x-posthog-distinct-id") ?? undefined
+    );
 
     return NextResponse.json(result, { status: result.success ? 200 : 500 });
   } catch (err: any) {
     console.error("/api/submit-library error:", err);
+    await captureServerException(err, req.headers.get("x-posthog-distinct-id") ?? undefined, {
+      route: "/api/submit-library",
+    });
     return NextResponse.json(
       { success: false, message: err?.message || "Server error" },
       { status: 500 }

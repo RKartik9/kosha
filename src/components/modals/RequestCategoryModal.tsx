@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import posthog from "posthog-js";
 import { requestCategory } from "@/actions/submissions";
 
 interface RequestCategoryModalProps {
@@ -29,7 +30,12 @@ export default function RequestCategoryModal({
     setLoading(true);
     setMessage(null);
 
-    const result = await requestCategory(formData);
+    posthog.capture("category_request_attempted", { category_name: formData.categoryName });
+    const result = await requestCategory(formData, posthog.get_distinct_id());
+
+    if (!result.success) {
+      posthog.captureException(new Error(result.message), { form: "request_category" });
+    }
 
     if (result.success) {
       setMessage({ type: "success", text: result.message });

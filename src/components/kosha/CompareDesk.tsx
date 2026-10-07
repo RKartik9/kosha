@@ -4,8 +4,10 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Plus, X } from "lucide-react";
+import posthog from "posthog-js";
 import type { Resource } from "@/data/types";
 import { Favicon } from "./Favicon";
+import { OutboundLink } from "./TrackedLink";
 import { cn } from "@/lib/utils";
 
 const MAX = 4;
@@ -38,8 +40,12 @@ export function CompareDesk({ entries }: { entries: CompareEntry[] }) {
   const add = (slug: string) => {
     setItems([...selected.map((s) => s.slug), slug]);
     setQuery("");
+    posthog.capture("compare_item_added", { slug, compare_count: selected.length + 1 });
   };
-  const remove = (slug: string) => setItems(selected.filter((s) => s.slug !== slug).map((s) => s.slug));
+  const remove = (slug: string) => {
+    setItems(selected.filter((s) => s.slug !== slug).map((s) => s.slug));
+    posthog.capture("compare_item_removed", { slug, compare_count: selected.length - 1 });
+  };
 
   const suggestions = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -87,9 +93,9 @@ export function CompareDesk({ entries }: { entries: CompareEntry[] }) {
       label: "Links",
       render: (e) => (
         <span className="flex flex-wrap gap-x-3 gap-y-1 font-semibold text-xs uppercase tracking-wider">
-          <a className="link-ink" href={e.url} target="_blank" rel="noopener noreferrer">Site ↗</a>
-          {e.docs && <a className="link-ink" href={e.docs} target="_blank" rel="noopener noreferrer">Docs ↗</a>}
-          {e.github && <a className="link-ink" href={e.github} target="_blank" rel="noopener noreferrer">Repo ↗</a>}
+          <OutboundLink className="link-ink" href={e.url} slug={e.slug} linkType="site" source="compare">Site ↗</OutboundLink>
+          {e.docs && <OutboundLink className="link-ink" href={e.docs} slug={e.slug} linkType="docs" source="compare">Docs ↗</OutboundLink>}
+          {e.github && <OutboundLink className="link-ink" href={e.github} slug={e.slug} linkType="github" source="compare">Repo ↗</OutboundLink>}
         </span>
       ),
     },

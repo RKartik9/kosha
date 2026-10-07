@@ -1,6 +1,7 @@
 "use client";
 
 import { Bookmark, BookmarkCheck } from "lucide-react";
+import posthog from "posthog-js";
 import { useSaved } from "@/hooks/use-saved";
 import { cn } from "@/lib/utils";
 
@@ -26,6 +27,7 @@ export function SaveButton({
         e.preventDefault();
         e.stopPropagation();
         toggle(slug);
+        posthog.capture(saved ? "library_unsaved" : "library_saved", { slug, name });
       }}
       aria-pressed={saved}
       aria-label={saved ? `Remove ${name} from saved` : `Save ${name}`}

@@ -7,6 +7,7 @@ import { Favicon } from "@/components/kosha/Favicon";
 import { Kolam } from "@/components/kosha/Kolam";
 import { SaveButton } from "@/components/kosha/SaveButton";
 import { Stamp } from "@/components/kosha/Stamp";
+import { OutboundLink } from "@/components/kosha/TrackedLink";
 import {
   getAll,
   getBySlug,
@@ -130,23 +131,24 @@ export default async function ResourcePage({
             </ul>
 
             <div className="mt-10 flex flex-wrap gap-3">
-              <a
+              <OutboundLink
                 href={r.url}
-                target="_blank"
-                rel="noopener noreferrer"
+                slug={r.slug}
+                linkType="site"
+                source="detail_page"
                 className="inline-flex h-11 items-center gap-2 rounded-sm bg-ink px-5 font-semibold text-xs uppercase tracking-wider text-paper transition-colors hover:bg-marigold hover:text-[#1e1b4b]"
               >
                 Visit site <ArrowUpRight className="h-4 w-4" />
-              </a>
+              </OutboundLink>
               {r.docs && (
-                <a href={r.docs} target="_blank" rel="noopener noreferrer" className="inline-flex h-11 items-center gap-2 rounded-sm border-2 border-ink px-5 font-semibold text-xs uppercase tracking-wider text-ink hover:bg-paper">
+                <OutboundLink href={r.docs} slug={r.slug} linkType="docs" source="detail_page" className="inline-flex h-11 items-center gap-2 rounded-sm border-2 border-ink px-5 font-semibold text-xs uppercase tracking-wider text-ink hover:bg-paper">
                   <BookOpen className="h-4 w-4" /> Docs
-                </a>
+                </OutboundLink>
               )}
               {r.github && (
-                <a href={r.github} target="_blank" rel="noopener noreferrer" className="inline-flex h-11 items-center gap-2 rounded-sm border-2 border-ink px-5 font-semibold text-xs uppercase tracking-wider text-ink hover:bg-paper">
+                <OutboundLink href={r.github} slug={r.slug} linkType="github" source="detail_page" className="inline-flex h-11 items-center gap-2 rounded-sm border-2 border-ink px-5 font-semibold text-xs uppercase tracking-wider text-ink hover:bg-paper">
                   <Github className="h-4 w-4" /> Source
-                </a>
+                </OutboundLink>
               )}
               <SaveButton slug={r.slug} name={r.name} variant="full" />
               <Link

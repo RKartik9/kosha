@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Search } from "lucide-react";
+import posthog from "posthog-js";
 import {
   CommandDialog,
   CommandEmpty,
@@ -58,6 +59,7 @@ export function CatalogSearch({ entries }: { entries: SearchEntry[] }) {
   }, []);
 
   const go = (href: string) => {
+    posthog.capture("catalog_search_result_selected", { href });
     setOpen(false);
     router.push(href);
   };
