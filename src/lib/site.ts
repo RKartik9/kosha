@@ -1,4 +1,4 @@
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://kosha-omega.vercel.app").replace(/\/$/, "");
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://kosha.rohitkartik.in").replace(/\/$/, "");
 export const SITE_NAME = "Kosha";
 export const SITE_TITLE = "Kosha — Free UI Libraries, React Component Libraries & Design Resources";
 export const SITE_DESCRIPTION =
