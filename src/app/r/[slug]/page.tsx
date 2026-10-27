@@ -19,6 +19,7 @@ import {
 import { breadcrumbJsonLd, pageMeta } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
 import { SITE_URL } from "@/lib/site";
+import { Reveal } from "@/components/kosha/Reveal";
 
 type Params = { slug: string };
 
@@ -107,6 +108,7 @@ export default async function ResourcePage({
         <span className="text-ink">{r.name}</span>
       </nav>
 
+      <Reveal y={32}>
       <article className="index-card overflow-hidden rounded-[4px] pb-12">
         <header className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-double hairline px-6 py-4 md:px-10">
           <span className="text-sm font-medium text-muted-foreground">{cat.name}</span>
@@ -177,6 +179,7 @@ export default async function ResourcePage({
           </aside>
         </div>
       </article>
+      </Reveal>
 
       {related.length > 0 && (
         <section className="mt-20">
@@ -184,8 +187,10 @@ export default async function ResourcePage({
             Similar tools
           </p>
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {related.map((x) => (
-              <IndexCard key={x.slug} resource={x} />
+            {related.map((x, i) => (
+              <Reveal key={x.slug} delay={(i % 3) * 0.12}>
+                <IndexCard resource={x} />
+              </Reveal>
             ))}
           </div>
         </section>

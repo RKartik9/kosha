@@ -5,6 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 import type { GalleryItem } from "@/data/types";
 import { cn } from "@/lib/utils";
 import { ComponentPreview } from "./ComponentPreview";
+import { Reveal } from "@/components/kosha/Reveal";
 
 export function ExhibitionWall({
   items,
@@ -38,13 +39,13 @@ export function ExhibitionWall({
       </div>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {shown.map((item) => (
+        {shown.map((item, i) => (
+          <Reveal key={item.id} delay={(i % 3) * 0.12} className="flex">
           <a
-            key={item.id}
             href={item.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex flex-col overflow-hidden rounded-[4px] border hairline bg-card shadow-[0_14px_30px_-24px_rgba(30,27,75,0.7)] transition-all duration-300 hover:-translate-y-1 hover:border-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-marigold"
+            className="group flex w-full flex-col overflow-hidden rounded-[4px] border hairline bg-card shadow-[0_14px_30px_-24px_rgba(30,27,75,0.7)] transition-all duration-300 hover:-translate-y-1 hover:border-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-marigold"
           >
             <ComponentPreview item={item} className="border-b hairline" />
             <div className="flex flex-1 flex-col px-5 pb-5 pt-4">
@@ -59,6 +60,7 @@ export function ExhibitionWall({
               </span>
             </div>
           </a>
+          </Reveal>
         ))}
       </div>
     </>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { IndexTab } from "@/components/kosha/IndexTab";
 import { Drawer } from "@/components/kosha/Drawer";
 import { getAll, getByCategory, getCategories } from "@/lib/catalog";
+import { Reveal } from "@/components/kosha/Reveal";
 
 export const metadata: Metadata = pageMeta({
   title: "Free Design Resources: Icons, Fonts, Illustrations & More",
@@ -45,8 +46,10 @@ export default function ResourcesPage() {
               </span>
             </h2>
             <div className="grid gap-x-6 gap-y-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-              {cats.map((c) => (
-                <Drawer key={c.slug} category={c} items={getByCategory(c.slug)} />
+              {cats.map((c, i) => (
+                <Reveal key={c.slug} delay={(i % 5) * 0.1}>
+                  <Drawer category={c} items={getByCategory(c.slug)} />
+                </Reveal>
               ))}
             </div>
           </section>

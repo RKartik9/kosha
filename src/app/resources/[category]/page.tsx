@@ -7,6 +7,7 @@ import { Kolam } from "@/components/kosha/Kolam";
 import { getByCategory, getCategories, getCategory } from "@/lib/catalog";
 import { breadcrumbJsonLd, itemListJsonLd, pageMeta } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
+import { Reveal } from "@/components/kosha/Reveal";
 
 type Params = { category: string };
 
@@ -80,6 +81,7 @@ export default async function CategoryPage({
         <p className="mb-4 font-semibold text-xs uppercase tracking-wider text-muted-foreground">
           Other categories
         </p>
+        <Reveal>
         <ul className="flex flex-wrap gap-2">
           {siblings.map((s) => (
             <li key={s.slug}>
@@ -93,6 +95,7 @@ export default async function CategoryPage({
             </li>
           ))}
         </ul>
+        </Reveal>
       </section>
     </div>
   );

@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { Resource } from "@/data/types";
 import { useSaved } from "@/hooks/use-saved";
 import { IndexCard } from "./IndexCard";
+import { Reveal } from "@/components/kosha/Reveal";
 
 export function SavedShelf({ items }: { items: Resource[] }) {
   const { saved, clear } = useSaved();
@@ -54,8 +55,10 @@ export function SavedShelf({ items }: { items: Resource[] }) {
         </div>
       </div>
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {cards.map((r) => (
-          <IndexCard key={r.slug} resource={r} stamp="On loan" stampTone="marigold" />
+        {cards.map((r, i) => (
+          <Reveal key={r.slug} delay={(i % 3) * 0.12}>
+            <IndexCard resource={r} stamp="On loan" stampTone="marigold" />
+          </Reveal>
         ))}
       </div>
     </div>

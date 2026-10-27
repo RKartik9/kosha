@@ -2,6 +2,7 @@ import Link from "next/link";
 import { IndexTab } from "@/components/kosha/IndexTab";
 import { IndexCard } from "@/components/kosha/IndexCard";
 import { getNew } from "@/lib/catalog";
+import { Reveal } from "@/components/kosha/Reveal";
 
 export default function NewArrivals() {
   const items = getNew(6);
@@ -20,8 +21,10 @@ export default function NewArrivals() {
         }
       />
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {items.map((r) => (
-          <IndexCard key={r.slug} resource={r} stamp="New" stampTone="marigold" />
+        {items.map((r, i) => (
+          <Reveal key={r.slug} delay={(i % 3) * 0.12}>
+            <IndexCard resource={r} stamp="New" stampTone="marigold" />
+          </Reveal>
         ))}
       </div>
     </section>

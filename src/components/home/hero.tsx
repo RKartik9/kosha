@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { StatusBoard } from "@/components/kosha/StatusBoard";
 import { Stamp } from "@/components/kosha/Stamp";
+import { Reveal } from "@/components/kosha/Reveal";
 import { getAll, getBySlug, getCategories, getCategory, getLibraries, hostOf } from "@/lib/catalog";
 import type { Resource } from "@/data/types";
 
@@ -50,11 +51,14 @@ export default function Hero() {
     <section className="relative overflow-hidden">
       <div className="dot-grid absolute inset-0 opacity-60 [mask-image:linear-gradient(to_bottom,black,transparent)]" aria-hidden="true" />
       <div className="relative mx-auto grid max-w-7xl items-center gap-16 px-4 pt-16 pb-24 md:px-6 lg:grid-cols-[1.15fr_1fr] lg:px-8 lg:pt-24">
-        <div className="animate-rise">
+        <div>
+          <Reveal>
           <p className="inline-flex items-center gap-3 font-semibold text-xs uppercase tracking-wider text-muted-foreground">
             <span className="h-px w-8 bg-ink" />
             Free UI libraries · React components · Design resources
           </p>
+          </Reveal>
+          <Reveal delay={0.12}>
           <h1 className="mt-6 font-display text-5xl leading-[1.02] text-ink sm:text-6xl lg:text-[5.2rem]">
             A treasury of{" "}
             <em className="relative whitespace-nowrap italic">
@@ -65,13 +69,17 @@ export default function Hero() {
             </em>{" "}
             for people who build.
           </h1>
+          </Reveal>
+          <Reveal delay={0.24}>
           <p className="mt-8 max-w-xl text-lg text-muted-foreground">
             Kosha is a hand-picked directory of free UI libraries and React
             component libraries, plus Vue, Svelte and Angular kits, icons, fonts,
             illustrations and templates. Everything is free to use and checked by
             a real person.
           </p>
+          </Reveal>
 
+          <Reveal delay={0.36}>
           <div className="mt-10 flex flex-wrap items-center gap-3">
             <Link
               href="/libraries"
@@ -87,7 +95,9 @@ export default function Hero() {
               Browse design resources
             </Link>
           </div>
+          </Reveal>
 
+          <Reveal delay={0.48}>
           <div className="mt-14 flex flex-wrap items-end gap-10">
             <StatusBoard value={total} label="Free tools listed" />
             <dl className="grid grid-cols-2 gap-x-8 gap-y-1 font-semibold text-xs uppercase tracking-wider text-muted-foreground">
@@ -99,11 +109,14 @@ export default function Hero() {
               <dd className="text-ink">Free</dd>
             </dl>
           </div>
+          </Reveal>
         </div>
 
         <div className="group relative mx-auto h-[22rem] w-full md:h-[26rem] lg:h-[29rem] max-w-md" aria-hidden="true">
           {cards.map((r, i) => (
-            <MiniCard key={r.slug} r={r} i={i} />
+            <Reveal key={r.slug} delay={0.3 + i * 0.15} y={48} className={`absolute inset-0 ${i === 1 ? "z-10" : ""}`}>
+              <MiniCard r={r} i={i} />
+            </Reveal>
           ))}
           <p className="absolute -bottom-4 inset-x-0 hidden text-center md:block font-accent text-lg italic text-muted-foreground">
             hover to fan the cards

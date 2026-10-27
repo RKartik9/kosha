@@ -6,6 +6,7 @@ import SubmitLibraryModal from "@/components/modals/SubmitLibraryModal";
 import RequestCategoryModal from "@/components/modals/RequestCategoryModal";
 import { Stamp } from "@/components/kosha/Stamp";
 import { NEW_ISSUE_URL, REPO_URL } from "@/lib/site";
+import { Reveal } from "@/components/kosha/Reveal";
 
 export default function Donate({ letter = "G" }: { letter?: string }) {
   const [submitOpen, setSubmitOpen] = useState(false);
@@ -19,6 +20,7 @@ export default function Donate({ letter = "G" }: { letter?: string }) {
 
   return (
     <section className="mx-auto max-w-7xl px-4 pt-28 md:px-6 lg:px-8">
+      <Reveal y={32}>
       <div className="relative grid overflow-hidden rounded-[4px] bg-ink text-paper md:grid-cols-[1.2fr_1fr]">
         <div className="p-8 md:p-14">
           <p className="font-semibold text-xs uppercase tracking-wider text-paper/70">
@@ -90,6 +92,7 @@ export default function Donate({ letter = "G" }: { letter?: string }) {
           </div>
         </div>
       </div>
+      </Reveal>
 
       <SubmitLibraryModal isOpen={submitOpen} onClose={() => setSubmitOpen(false)} />
       <RequestCategoryModal isOpen={requestOpen} onClose={() => setRequestOpen(false)} />

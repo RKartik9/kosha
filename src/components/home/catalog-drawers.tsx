@@ -1,6 +1,7 @@
 import { IndexTab } from "@/components/kosha/IndexTab";
 import { Drawer } from "@/components/kosha/Drawer";
 import { getByCategory, getCategories } from "@/lib/catalog";
+import { Reveal } from "@/components/kosha/Reveal";
 
 export default function CatalogDrawers() {
   const cats = getCategories();
@@ -14,8 +15,10 @@ export default function CatalogDrawers() {
         description={`${cats.length} categories, from UI libraries to icons and fonts. Pick one to see everything in it.`}
       />
       <div className="grid gap-x-6 gap-y-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-        {cats.map((c) => (
-          <Drawer key={c.slug} category={c} items={getByCategory(c.slug)} />
+        {cats.map((c, i) => (
+          <Reveal key={c.slug} delay={(i % 5) * 0.1}>
+            <Drawer category={c} items={getByCategory(c.slug)} />
+          </Reveal>
         ))}
       </div>
     </section>

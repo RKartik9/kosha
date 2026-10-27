@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { Reveal } from "@/components/kosha/Reveal";
 
 export function IndexTab({
   label,
@@ -18,7 +19,7 @@ export function IndexTab({
   as?: "h1" | "h2" | "h3";
 }) {
   return (
-    <div className={cn("mb-10", className)}>
+    <Reveal className={cn("mb-10", className)}>
       <div className="flex items-end">
         <span className="relative -mb-px inline-flex items-center gap-2 rounded-t-[6px] border border-b-0 hairline bg-card px-4 pt-1.5 pb-2 font-semibold text-xs uppercase tracking-wider text-ink">
           <span className="h-2 w-2 rounded-full bg-marigold" aria-hidden="true" />
@@ -43,6 +44,6 @@ export function IndexTab({
           {action}
         </div>
       )}
-    </div>
+    </Reveal>
   );
 }

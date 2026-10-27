@@ -6,6 +6,7 @@ import { Stamp } from "@/components/kosha/Stamp";
 import Donate from "@/components/home/donate";
 import { getAll, getCategories } from "@/lib/catalog";
 import { ISSUES_URL, NEW_ISSUE_URL, REPO_URL } from "@/lib/site";
+import { Reveal } from "@/components/kosha/Reveal";
 
 export const metadata: Metadata = pageMeta({
   title: "About",
@@ -77,6 +78,7 @@ export default function AboutPage() {
           description={`${getAll().length} free tools in ${getCategories().length} categories, and growing.`}
         />
 
+        <Reveal y={32}>
         <section className="index-card ruled relative rounded-[4px] px-6 pt-10 pb-16 pl-16 leading-7 [--rule-offset:2.5rem] md:px-14 md:pl-24 [&::after]:hidden">
           <div className="absolute right-8 top-8 hidden md:block">
             <Stamp tone="marigold" rotate={9} className="text-sm">Since 2025</Stamp>
@@ -95,16 +97,17 @@ export default function AboutPage() {
             </article>
           ))}
         </section>
+        </Reveal>
 
         <section className="mt-24">
           <IndexTab label="Who's behind it" />
           <div className="grid gap-8 md:grid-cols-3">
-            {team.map((l) => (
-              <div key={l.role} className="index-card rounded-[3px] px-6 pt-6 pb-12">
+            {team.map((l, i) => (
+              <Reveal key={l.role} delay={(i % 3) * 0.12} className="index-card rounded-[3px] px-6 pt-6 pb-12">
                 <Kolam motif={l.motif} size={64} />
                 <p className="mt-5 font-display text-2xl text-ink">{l.role}</p>
                 <p className="mt-2 text-sm text-muted-foreground">{l.duty}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </section>
@@ -116,24 +119,26 @@ export default function AboutPage() {
             description="Found a broken link, a wrong label or a tool we should add? Open an issue or send a pull request on GitHub."
           />
           <div className="grid gap-4 md:grid-cols-3">
-            {contribute.map((c) => (
+            {contribute.map((c, i) => (
+              <Reveal key={c.title} delay={(i % 3) * 0.12} className="flex">
               <a
-                key={c.title}
                 href={c.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group index-card relative flex flex-col rounded-[3px] px-6 pt-6 pb-8 pr-14 transition-transform hover:-translate-y-1"
+                className="group index-card relative flex w-full flex-col rounded-[3px] px-6 pt-6 pb-8 pr-14 transition-transform hover:-translate-y-1"
               >
                 <span aria-hidden="true" className="absolute right-6 top-6 text-xl text-marigold-deep transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">↗</span>
                 <p className="font-display text-2xl text-ink">{c.title}</p>
                 <p className="mt-2 text-sm text-muted-foreground">{c.body}</p>
               </a>
+              </Reveal>
             ))}
           </div>
         </section>
 
         <section className="mt-24">
           <IndexTab label="History" />
+          <Reveal>
           <table className="w-full border-t-2 border-ink text-sm">
             <tbody>
               {history.map((l) => (
@@ -146,6 +151,7 @@ export default function AboutPage() {
               ))}
             </tbody>
           </table>
+          </Reveal>
         </section>
       </div>
       <Donate />

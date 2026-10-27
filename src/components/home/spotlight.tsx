@@ -5,6 +5,7 @@ import { Stamp } from "@/components/kosha/Stamp";
 import { Favicon } from "@/components/kosha/Favicon";
 import { SaveButton } from "@/components/kosha/SaveButton";
 import { getCategory, getFeatured, hostOf } from "@/lib/catalog";
+import { Reveal } from "@/components/kosha/Reveal";
 
 function weekOfYear(d: Date) {
   const start = Date.UTC(d.getUTCFullYear(), 0, 1);
@@ -19,6 +20,7 @@ export default function Spotlight() {
   return (
     <section className="mx-auto max-w-7xl px-4 pt-28 md:px-6 lg:px-8">
       <IndexTab letter="D" label="Pick of the week" />
+      <Reveal y={32}>
       <div className="index-card grid overflow-hidden rounded-[4px] pb-0 md:grid-cols-[1.4fr_1fr] [&::after]:hidden">
         <div className="ruled relative p-8 pl-16 leading-7 [--rule-offset:2rem] md:p-12 md:pl-20 md:[--rule-offset:3rem]">
           <p className="font-semibold text-xs uppercase tracking-wider text-muted-foreground">
@@ -77,6 +79,7 @@ export default function Spotlight() {
           </p>
         </aside>
       </div>
+      </Reveal>
     </section>
   );
 }

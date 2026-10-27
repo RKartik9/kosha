@@ -1,6 +1,7 @@
 import { Plus } from "lucide-react";
 import { IndexTab } from "@/components/kosha/IndexTab";
 import { NEW_ISSUE_URL } from "@/lib/site";
+import { Reveal } from "@/components/kosha/Reveal";
 
 export const faqs = [
   {
@@ -61,7 +62,8 @@ export default function ReadingRoom() {
         </div>
         <div className="border-t-2 border-ink">
           {faqs.map((f, i) => (
-            <details key={f.q} className="group border-b hairline" open={i === 0}>
+            <Reveal key={f.q} delay={0.04}>
+            <details className="group border-b hairline" open={i === 0}>
               <summary className="flex cursor-pointer list-none items-baseline gap-5 py-6 [&::-webkit-details-marker]:hidden">
                 <span className="font-mono text-xs text-marigold-deep">
                   {String(i + 1).padStart(2, "0")}
@@ -71,6 +73,7 @@ export default function ReadingRoom() {
               </summary>
               <p className="max-w-2xl pb-7 pl-10 text-ink/80">{f.a}</p>
             </details>
+            </Reveal>
           ))}
         </div>
       </div>

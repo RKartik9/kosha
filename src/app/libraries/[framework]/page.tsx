@@ -15,6 +15,7 @@ import {
   getFrameworkPage,
 } from "@/lib/catalog";
 import { breadcrumbJsonLd, itemListJsonLd, pageMeta } from "@/lib/seo";
+import { Reveal } from "@/components/kosha/Reveal";
 
 type Params = { framework: string };
 
@@ -123,6 +124,7 @@ export default async function FrameworkPage({ params }: { params: Promise<Params
         />
         <FrameworkLinks current={fw.slug} className="-mt-4 mb-10" />
 
+        <Reveal>
         <section aria-labelledby="top-picks" className="mb-14 rounded-[4px] border hairline bg-card p-6 md:p-8">
           <h2 id="top-picks" className="font-display text-2xl text-ink">
             Popular free {fw.name} component libraries
@@ -139,6 +141,7 @@ export default async function FrameworkPage({ params }: { params: Promise<Params
             ))}
           </ol>
         </section>
+        </Reveal>
 
         <CatalogBrowser items={items} categories={cats} />
 
@@ -148,10 +151,10 @@ export default async function FrameworkPage({ params }: { params: Promise<Params
           </h2>
           <div className="mt-6 border-t-2 border-ink">
             {faqs.map((f) => (
-              <div key={f.q} className="border-b hairline py-5">
+              <Reveal key={f.q} className="border-b hairline py-5">
                 <h3 className="font-display text-xl text-ink">{f.q}</h3>
                 <p className="mt-2 max-w-3xl text-muted-foreground">{f.a}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </section>

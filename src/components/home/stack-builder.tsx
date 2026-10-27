@@ -4,6 +4,7 @@ import { Stamp } from "@/components/kosha/Stamp";
 import { TrackedLink } from "@/components/kosha/TrackedLink";
 import { stacks } from "@/data/stacks";
 import { getBySlug, getCategory } from "@/lib/catalog";
+import { Reveal } from "@/components/kosha/Reveal";
 
 export default function StackBuilder() {
   return (
@@ -21,8 +22,8 @@ export default function StackBuilder() {
       />
       <div className="grid gap-8 md:grid-cols-3">
         {stacks.map((stack, si) => (
+          <Reveal key={stack.slug} delay={(si % 3) * 0.12}>
           <TrackedLink
-            key={stack.slug}
             href={`/compare?items=${stack.items.join(",")}`}
             event="stack_compare_clicked"
             properties={{ stack: stack.slug, items: stack.items }}
@@ -68,6 +69,7 @@ export default function StackBuilder() {
               Compare these tools →
             </p>
           </TrackedLink>
+          </Reveal>
         ))}
       </div>
     </section>

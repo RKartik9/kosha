@@ -5,6 +5,7 @@ import { Search, X } from "lucide-react";
 import type { Category, Framework, Pricing, Resource } from "@/data/types";
 import { IndexCard } from "./IndexCard";
 import { cn } from "@/lib/utils";
+import { Reveal } from "@/components/kosha/Reveal";
 
 const pricingOptions: { value: Pricing; label: string }[] = [
   { value: "oss", label: "Open source" },
@@ -173,8 +174,10 @@ export function CatalogBrowser({
 
         {filtered.length > 0 ? (
           <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
-            {filtered.map((r) => (
-              <IndexCard key={r.slug} resource={r} />
+            {filtered.map((r, i) => (
+              <Reveal key={r.slug} delay={(i % 3) * 0.12}>
+                <IndexCard resource={r} />
+              </Reveal>
             ))}
           </div>
         ) : (
